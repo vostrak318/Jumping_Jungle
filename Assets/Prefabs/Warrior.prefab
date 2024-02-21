@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d10f60acde9d54aa60268a42326fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  jumpForce: 3
+  speed: 5
+  jumpForce: 7
   animator: {fileID: 5477231328920513980}
 --- !u!50 &1749117126130322747
 Rigidbody2D:
@@ -150,7 +150,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3062518997361957346
 BoxCollider2D:
   m_ObjectHideFlags: 0
