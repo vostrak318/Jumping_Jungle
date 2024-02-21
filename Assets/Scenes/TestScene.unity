@@ -249,7 +249,6 @@ GameObject:
   - component: {fileID: 995413761}
   - component: {fileID: 995413760}
   - component: {fileID: 995413763}
-  - component: {fileID: 995413764}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -325,7 +324,7 @@ Transform:
   m_GameObject: {fileID: 995413759}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.56, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -375,51 +374,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!61 &995413764
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995413759}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1001 &1419079172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,6 +382,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1749117126130322747, guid: ff49fdecf4c4f504784801511dcbbeeb, type: 3}
+      propertyPath: m_Mass
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749117126130322747, guid: ff49fdecf4c4f504784801511dcbbeeb, type: 3}
+      propertyPath: m_LinearDrag
+      value: 4.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749117126130322747, guid: ff49fdecf4c4f504784801511dcbbeeb, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749117126130322747, guid: ff49fdecf4c4f504784801511dcbbeeb, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749117126130322747, guid: ff49fdecf4c4f504784801511dcbbeeb, type: 3}
+      propertyPath: m_GravityScale
+      value: 1.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 5915108300123779191, guid: ff49fdecf4c4f504784801511dcbbeeb, type: 3}
+      propertyPath: speed
+      value: 13.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 5915108300123779191, guid: ff49fdecf4c4f504784801511dcbbeeb, type: 3}
+      propertyPath: jumpForce
+      value: 10.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6073323335894230079, guid: ff49fdecf4c4f504784801511dcbbeeb, type: 3}
       propertyPath: m_Name
       value: Warrior
@@ -491,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2131655372261560637, guid: 3d7415f9922039345960bd3a05cda77a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8737829
+      value: -2.922152
       objectReference: {fileID: 0}
     - target: {fileID: 2131655372261560637, guid: 3d7415f9922039345960bd3a05cda77a, type: 3}
       propertyPath: m_LocalPosition.z
