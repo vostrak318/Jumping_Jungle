@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float speed = 3f;
+    [SerializeField] private float jumpForce = 5f;
 
     private Rigidbody2D body;
     private Vector2 axisMovement;
@@ -26,6 +27,12 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("Run", true);
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+            animator.SetBool("Jump", true);
+        }
     }
 
     private void FixedUpdate()
@@ -35,8 +42,16 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
-        body.velocity = axisMovement.normalized * speed;
+        body.velocity = new Vector2(axisMovement.normalized.x * speed, body.velocity.y);
         CheckForFlipping();
+    }
+
+    private void Jump()
+    {
+        if (Mathf.Abs(body.velocity.y) < 0.01f)
+        {
+            body.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
     }
 
     private void CheckForFlipping()
@@ -46,12 +61,12 @@ public class Movement : MonoBehaviour
 
         if (movingLeft)
         {
-            transform.localScale = new Vector3(-1f, transform.localScale.y);
+            transform.localScale = new Vector3(-5f, transform.localScale.y);
         }
 
         if (movingRight)
         {
-            transform.localScale = new Vector3(1f, transform.localScale.y);
+            transform.localScale = new Vector3(5f, transform.localScale.y);
         }
     }
 }
