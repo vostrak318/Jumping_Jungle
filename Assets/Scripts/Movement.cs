@@ -1,72 +1,77 @@
 using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovementHero : MonoBehaviour
 {
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private float jumpForce = 5f;
-
-    private Rigidbody2D body;
-    private Vector2 axisMovement;
+    public float speed = 3f;
+    public float jumpForce = 5f;
+    [SerializeField]private bool isGrounded;
+    private Rigidbody2D rb;
     public Animator animator;
 
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        axisMovement.x = Input.GetAxisRaw("Horizontal");
-        if (body.velocity == Vector2.zero)
-        {
-            animator.SetBool("Run", false);
-        }
-        else
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        Vector2 movement = new Vector2(horizontalInput * speed, rb.velocity.y);
+        rb.AddForce(movement, ForceMode2D.Force);
+
+        if (Mathf.Abs(horizontalInput) > 0.1f)
         {
             animator.SetBool("Run", true);
         }
+        else
+        {
+            animator.SetBool("Run", false);
+        }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (horizontalInput > 0)
+        {
+            transform.localScale = new Vector3(5, 5, 0);
+        }
+        else if (horizontalInput < 0)
+        {
+            transform.localScale = new Vector3(-5, 5, 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
             animator.SetBool("Jump", true);
+            animator.SetBool("Run", false);
+        }
+        else if (isGrounded)
+        {
+            animator.SetBool("Jump", false);
         }
     }
 
-    private void FixedUpdate()
+
+    void Jump()
     {
-        Move();
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    private void Move()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        body.velocity = new Vector2(axisMovement.normalized.x * speed, body.velocity.y);
-        CheckForFlipping();
-    }
-
-    private void Jump()
-    {
-        if (Mathf.Abs(body.velocity.y) < 0.01f)
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            body.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            isGrounded = true;
         }
     }
 
-    private void CheckForFlipping()
+    void OnCollisionExit2D(Collision2D collision)
     {
-        bool movingLeft = axisMovement.x < 0;
-        bool movingRight = axisMovement.x > 0;
-
-        if (movingLeft)
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            transform.localScale = new Vector3(-5f, transform.localScale.y);
-        }
-
-        if (movingRight)
-        {
-            transform.localScale = new Vector3(5f, transform.localScale.y);
+            isGrounded = false;
         }
     }
 }
