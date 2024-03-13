@@ -19,12 +19,12 @@ public class MovementHero : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        Vector2 movement = new Vector2(horizontalInput * speed, rb.velocity.y);
-        rb.AddForce(movement, ForceMode2D.Force);
 
         if (Mathf.Abs(horizontalInput) > 0.1f)
         {
             animator.SetBool("Run", true);
+            Vector2 movement = new Vector2(horizontalInput * speed, 0);
+            rb.AddForce(movement, ForceMode2D.Force);
         }
         else
         {
